@@ -1,0 +1,6 @@
+No arquivo modelo.txt tem em arquivo txt a lista de entidades com sua devida modelagem relacional
+mas caso opte por outra visualização...
+
+Segue abaixo link do google docs com a documentação do modelo relacional:
+
+https://docs.google.com/document/d/1StApZnwnntXeRq023b1wQx5GtqzBOad0vSIPqM8DLZQ/edit?usp=sharing

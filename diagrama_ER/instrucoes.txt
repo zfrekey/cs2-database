@@ -1,0 +1,4 @@
+Baixe a extensão do excalidraw para o vscode para abrir o arquivo
+
+Caso não consiga acesse esse link:
+https://excalidraw.com/#json=nHqD7OnkN3F6SjyEIsNrq,6TMKROoQxUGgvl6k4AQHeg
