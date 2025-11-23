@@ -24,7 +24,7 @@ Após clonar, entre na pasta do projeto:
 cd cs2-database
 ```
 
-## Importar o schema e os dados (ex.: PostgreSQL)
+## Importar o schema e os dados (PostgreSQL)
 
 Os arquivos SQL estão prontos para serem executados em um servidor Postgres
 
