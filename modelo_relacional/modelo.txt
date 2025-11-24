@@ -1,0 +1,167 @@
+Torneio(
+ Nome PK,
+ Data_Inicio,
+ Data_Fim,
+ Local,
+ Premiacao_Total,
+ Organizadora FK → Organizador(Nome)
+)
+
+Fase_Torneio(
+ Nome PK,
+ Formato,
+ Torneio_Nome FK → Torneio(Nome)
+)
+
+Equipe(
+ Sigla PK,
+ Nome,
+ Pais_Sede
+)
+
+Inscricao(
+ Seed,
+ Torneio_Nome,
+ Equipe_Sigla,
+ PK(Torneio_Nome, Equipe_Sigla, Seed),
+ Torneio_Nome FK → Torneio(Nome),
+ Equipe_Sigla FK → Equipe(Sigla)
+)
+
+Premiacao(
+ Torneio_Nome,
+ Equipe_Sigla,
+ Posicao_Final,
+ Valor,
+ PK(Torneio_Nome, Equipe_Sigla),
+ Torneio_Nome FK → Torneio(Nome),
+ Equipe_Sigla FK → Equipe(Sigla)
+)
+
+Integrante(
+ CPF PK,
+ Nome,
+ Nick,
+ Situacao
+)
+
+Tecnico(
+ CPF PK,
+ CPF FK → Integrante(CPF)
+)
+
+Jogador(
+ CPF PK,
+ Funcao,
+ CPF FK → Integrante(CPF)
+)
+
+Equipe_Tecnico(
+ Equipe_Sigla,
+ Tecnico_CPF,
+ Data_Inicio,
+ Data_Fim,
+ PK(Equipe_Sigla, Tecnico_CPF, Data_Inicio),
+ Equipe_Sigla FK → Equipe(Sigla),
+ Tecnico_CPF FK → Tecnico(CPF)
+)
+
+Equipe_Jogador(
+ Equipe_Sigla,
+ Jogador_CPF,
+ Data_Inicio,
+ Data_Fim,
+ PK(Equipe_Sigla, Jogador_CPF, Data_Inicio),
+ Equipe_Sigla FK → Equipe(Sigla),
+ Jogador_CPF FK → Jogador(CPF)
+)
+
+Serie(
+ EquipeA,
+ EquipeB,
+ Fase_Torneio_Nome,
+ Formato,
+ Equipe_Vencedora,
+ PK(EquipeA, EquipeB, Fase_Torneio_Nome),
+ EquipeA FK → Equipe(Sigla),
+ EquipeB FK → Equipe(Sigla),
+ Equipe_Vencedora FK → Equipe(Sigla),
+ Fase_Torneio_Nome FK → Fase_Torneio(Nome)
+)
+
+Mapa(
+ Nome PK
+)
+
+PickBanMapa(
+ Serie_EquipeA,
+ Serie_EquipeB,
+ Serie_Fase_Nome,
+ Mapa_Nome,
+ Ordem,
+ Equipe_Sigla,
+ Tipo,
+ Numero_Partida,
+ PK(Serie_EquipeA, Serie_EquipeB, Serie_Fase_Nome, Mapa_Nome, Ordem),
+ Serie_EquipeA, Serie_EquipeB, Serie_Fase_Nome FK →Serie(EquipeA, EquipeB, Fase_Torneio_Nome),
+ Mapa_Nome FK → Mapa(Nome),
+ Equipe_Sigla FK → Equipe(Sigla)
+)
+
+Partida(
+ Numero_Partida,
+ Serie_EquipeA,
+ Serie_EquipeB,
+ Serie_Fase_Nome,
+ PontuacaoA,
+ PontuacaoB,
+ LadoInicialA,
+ Mapa_Nome,
+ Equipe_Vencedora,
+ PK(Numero_Partida, Serie_EquipeA, Serie_EquipeB, Serie_Fase_Nome),
+ Serie_EquipeA, Serie_EquipeB, Serie_Fase_Nome FK → Serie(EquipeA, EquipeB, Fase_Torneio_Nome),
+ Mapa_Nome FK → Mapa(Nome),
+ Equipe_Vencedora FK → Equipe(Sigla)
+)
+
+Round(
+ Numero_Round,
+ Partida_Numero,
+ Serie_EquipeA,
+ Serie_EquipeB,
+ Serie_Fase_Nome,
+ Equipe_Vencedora,
+ Lado_Vencedor,
+ Tipo_Vitoria,
+ PK(Numero_Round, Partida_Numero, Serie_EquipeA, Serie_EquipeB, Serie_Fase_Nome),
+ Partida_Numero, Serie_EquipeA, Serie_EquipeB, Serie_Fase_Nome FK → Partida(Numero_Partida, Serie_EquipeA, Serie_EquipeB, Serie_Fase_Nome),
+ Equipe_Vencedora FK → Equipe(Sigla)
+)
+
+EstatisticaJogadorPartida(
+ Jogador_CPF,
+ Partida_Numero,
+ Serie_EquipeA,
+ Serie_EquipeB,
+ Serie_Fase_Nome,
+ KDA,
+ Kills,
+ Deaths,
+ Assists,
+ ADR,
+ PK(Jogador_CPF, Partida_Numero, Serie_EquipeA, Serie_EquipeB, Serie_Fase_Nome),
+ Jogador_CPF FK → Jogador(CPF),
+ Partida_Numero, Serie_EquipeA, Serie_EquipeB, Serie_Fase_Nome FK → Partida(Numero_Partida, Serie_EquipeA, Serie_EquipeB, Serie_Fase_Nome)
+)
+
+
+
+
+
+
+
+
+
+
+
+
