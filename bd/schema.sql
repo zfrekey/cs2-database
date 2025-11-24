@@ -1,17 +1,21 @@
+CREATE TABLE Organizador (
+    Nome VARCHAR(100) PRIMARY KEY
+);
 
-CREATE SCHEMA IF NOT EXISTS uff;
+CREATE TABLE Integrante (
+    CPF VARCHAR(14) PRIMARY KEY,
+    Nome VARCHAR(100) NOT NULL,
+    Nick VARCHAR(50) NOT NULL,
+    Situacao VARCHAR(20)
+);
 
-CREATE TABLE IF NOT EXISTS uff.jogador (
-    id SERIAL PRIMARY KEY,
-    nome VARCHAR(100) NOT NULL,
-    apelido VARCHAR(50),
-    data_nascimento DATE,
-    idade SMALLINT,
-    posicao VARCHAR(50),
-    nacionalidade VARCHAR(50),
-    clube VARCHAR(100),
-    numero_camisa SMALLINT,
-    altura NUMERIC(4,2),
-    peso NUMERIC(5,2),
-    criado_em TIMESTAMP WITH TIME ZONE DEFAULT now()
+CREATE TABLE Tecnico (
+    CPF VARCHAR(14) PRIMARY KEY,
+    FOREIGN KEY (CPF) REFERENCES Integrante(CPF)
+);
+
+CREATE TABLE Jogador (
+    CPF VARCHAR(14) PRIMARY KEY,
+    Funcao VARCHAR(50),
+    FOREIGN KEY (CPF) REFERENCES Integrante(CPF)
 );
